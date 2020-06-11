@@ -8,7 +8,7 @@ const chalk = require('chalk');
 
 
 program
-    .version('1.0.1', '-v, --version')
+    .version('1.0.2', '-v, --version')
     .usage('<origin> [dist]')
     // .usage('<template-name> [project-name]')
     // .option('-o, --origin', 'use git clone')
