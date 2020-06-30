@@ -1,11 +1,12 @@
 {
   "name": "mqj-clone",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "s": "node ./bin/index.js -h"
+    "demo": "node ./bin/index.js github:Pumpkinshow/mqj-clone ./dist",
+    "fail": "node ./bin/index.js github:Pumpkinshow/mqj-clone1 ./dist"
   },
   "bin": {
     "mqj-clone": "bin/index.js"

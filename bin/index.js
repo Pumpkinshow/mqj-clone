@@ -1,19 +1,13 @@
 #!/usr/bin/env node
 const program = require('commander');
 const download = require("download-git-repo");
-// const exists = require('fs').existsSync;
-// const path = require('path');
+const ora = require('ora');
 const chalk = require('chalk');
 
-
-
 program
-    .version('1.0.2', '-v, --version')
-    .usage('<origin> [dist]')
-    // .usage('<template-name> [project-name]')
-    // .option('-o, --origin', 'use git clone')
-    // .option('-d, --dist', 'use destination address')
-    // .option('--offline', 'use cached template')
+    .version('1.0.4', '-v, --version')
+    .usage('<origin> [dist]');
+
 
 /**
 * Help.
@@ -31,14 +25,27 @@ program.on('--help', () => {
 
 function help () {
     program.parse(process.argv)
-    // console.log(program)
     if (program.args.length < 1) {
         return program.help()
     } else {
-        console.log('params: ' + JSON.stringify(program.args));
+        chalk.yellow('Create start')
+        const spinner = ora(chalk.yellow('Create start')).start();
         const dist = program.args[1] ? program.args[1] : './';
+        spinner.color = 'blue';
+        spinner.text = 'Loading package from ' + program.args[0] + ' to ' + dist;
         download(program.args[0], dist, function (err) {
-            console.log(err ? chalk.red(err) : chalk.green('success'));
+            if (err) {
+                console.log(err);
+                spinner.color = 'red';
+                spinner.text = chalk.red('fail');
+                spinner.fail();
+            } else {
+                spinner.color = 'green';
+                spinner.text = chalk.green('success');
+                spinner.succeed();
+            }
+            spinner.stop();
+            spinner.clear();
         })
     }
 }
