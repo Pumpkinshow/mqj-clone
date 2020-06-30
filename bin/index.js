@@ -5,7 +5,7 @@ const ora = require('ora');
 const chalk = require('chalk');
 
 program
-    .version('1.0.4', '-v, --version')
+    .version('1.0.5', '-v, --version')
     .usage('<origin> [dist]');
 
 
